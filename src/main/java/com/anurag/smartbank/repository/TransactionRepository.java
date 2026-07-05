@@ -1,4 +1,4 @@
-package com.anurag.smartbank.respository;
+package com.anurag.smartbank.repository;
 
 import com.anurag.smartbank.entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
