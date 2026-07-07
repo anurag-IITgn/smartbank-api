@@ -1,3 +1,4 @@
+## basic layer hierarchy
 Controller
 ↓
 Service
@@ -8,7 +9,7 @@ Hibernate
 ↓
 MySQL
 
-
+## userRequest
 
 Client
 │
@@ -29,7 +30,7 @@ MySQL
 
 
 
-for Responses:
+## for Responses:
 MySQL
 │
 ▼
@@ -46,3 +47,42 @@ Controller
 │
 ▼
 Client
+
+
+
+## Account Creation Flow
+
+Client
+
+↓
+
+POST /accounts
+
+↓
+
+AccountController
+
+↓
+
+AccountService
+
+↓
+
+AccountMapper
+
+↓
+
+AccountRepository
+
+↓
+
+Database
+
+Business Rules implemented inside AccountService:
+
+- Verify user exists.
+- Generate unique account number.
+- Set balance = 0.
+- Set status = ACTIVE.
+- Set createdAt.
+- Save account.

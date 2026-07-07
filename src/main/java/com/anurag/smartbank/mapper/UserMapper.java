@@ -12,7 +12,8 @@ public class UserMapper
 {
     private final UserRepository userRepository;
 
-    public UserMapper(UserRepository userRepository) {
+    public UserMapper(UserRepository userRepository)
+    {
         this.userRepository = userRepository;
     }
 

@@ -7,12 +7,15 @@ public class CreateUserRequest
 {
     @NotBlank(message = "Full name is required")
     private String fullName;
+
     @Email(message="Please enter a valid email")
     @NotBlank(message = "Email is required")
     private String email;
+
     @NotBlank(message = "Phone number is required")
     @Pattern(regexp = "^[6-9]\\d{9}$", message = "Please enter a valid 10-digit Indian mobile number")
     private String phone;
+
     public CreateUserRequest()
     {
     }

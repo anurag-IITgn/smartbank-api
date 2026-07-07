@@ -29,7 +29,7 @@ public class UserService
         }
         if (userRepository.existsByPhone(request.getPhone()))
         {
-            throw new DuplicateResourceException(("Phone number already registered"));
+            throw new DuplicateResourceException("Phone number already registered");
         }
         User user = userMapper.toEntity(request);
         user.setCreatedAt(LocalDateTime.now());
