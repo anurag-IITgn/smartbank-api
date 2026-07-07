@@ -6,3 +6,56 @@ Optional is used so that we can bypass nullpointer exception and unwanted except
 boolean is primitive class cannot return null while Boolean is wrapper class and can store null
 nested properties like findbyAccountUserEmail() work by object Relational Mapping(ORM) for it to work the field email must be defined within object user which in terun must be fedined within account.
 object relationship works within java while foreign keys uses hibernate to talk to database.
+
+
+
+DTOs
+Request DTOs and Response DTOs should be separate.
+Request DTO represents data coming from the client.
+Response DTO controls what is sent back to the client.
+Returning Entity objects directly is not recommended because they may contain internal or sensitive fields.
+
+
+Mapper
+Mapper converts Request DTO → Entity.
+Mapper converts Entity → Response DTO.
+Mapper keeps conversion logic out of the service layer.
+This follows the Single Responsibility Principle.
+it converts Request DTO object into entity object and then again converts Entity objects into response DTO object.
+
+
+Service Layer
+Service contains business logic.
+Controller should only receive requests and return responses.
+Repository should only communicate with the database.
+Duplicate email and phone checks belong in the Service because they are business rules.
+
+
+ResponseEntity
+ResponseEntity allows complete control over HTTP responses.
+We can return different status codes such as:
+201 Created
+400 Bad Request
+409 Conflict
+ResponseEntity also allows returning custom response bodies.
+
+
+Validation
+Bean Validation is performed using Jakarta Validation annotations.
+@Valid triggers validation before the controller method executes.
+Validation occurs before the request reaches the service layer.
+Custom validation messages can be specified using the message attribute.
+
+Exception Handling
+@RestControllerAdvice provides centralized exception handling.
+@ExceptionHandler catches specific exceptions.
+Custom exceptions are created for business rules. example DuplicateResourceException was custom while MethodArgumentNotValid was default within Spring therefore it does not needs it separate class.
+Framework exceptions like MethodArgumentNotValidException are provided by Spring.
+
+
+Validation Errors
+MethodArgumentNotValidException is thrown automatically when validation fails.
+getBindingResult() returns validation results.
+getFieldErrors() returns all invalid fields.
+FieldError.getDefaultMessage() returns custom validation messages.
+Enhanced for-loops can be used to collect all validation messages into a List<String>.
