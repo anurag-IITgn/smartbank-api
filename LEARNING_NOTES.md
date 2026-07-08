@@ -9,14 +9,14 @@ object relationship works within java while foreign keys uses hibernate to talk 
 
 
 
-DTOs
+## DTOs
 Request DTOs and Response DTOs should be separate.
 Request DTO represents data coming from the client.
 Response DTO controls what is sent back to the client.
 Returning Entity objects directly is not recommended because they may contain internal or sensitive fields.
 
 
-Mapper
+## Mapper
 Mapper converts Request DTO → Entity.
 Mapper converts Entity → Response DTO.
 Mapper keeps conversion logic out of the service layer.
@@ -24,14 +24,14 @@ This follows the Single Responsibility Principle.
 it converts Request DTO object into entity object and then again converts Entity objects into response DTO object.
 
 
-Service Layer
+## Service Layer
 Service contains business logic.
 Controller should only receive requests and return responses.
 Repository should only communicate with the database.
 Duplicate email and phone checks belong in the Service because they are business rules.
 
 
-ResponseEntity
+## ResponseEntity
 ResponseEntity allows complete control over HTTP responses.
 We can return different status codes such as:
 201 Created
@@ -40,20 +40,20 @@ We can return different status codes such as:
 ResponseEntity also allows returning custom response bodies.
 
 
-Validation
+## Validation
 Bean Validation is performed using Jakarta Validation annotations.
 @Valid triggers validation before the controller method executes.
 Validation occurs before the request reaches the service layer.
 Custom validation messages can be specified using the message attribute.
 
-Exception Handling
+## Exception Handling
 @RestControllerAdvice provides centralized exception handling.
 @ExceptionHandler catches specific exceptions.
 Custom exceptions are created for business rules. example DuplicateResourceException was custom while MethodArgumentNotValid was default within Spring therefore it does not needs it separate class.
 Framework exceptions like MethodArgumentNotValidException are provided by Spring.
 
 
-Validation Errors
+## Validation Errors
 MethodArgumentNotValidException is thrown automatically when validation fails.
 getBindingResult() returns validation results.
 getFieldErrors() returns all invalid fields.
@@ -61,7 +61,7 @@ FieldError.getDefaultMessage() returns custom validation messages.
 Enhanced for-loops can be used to collect all validation messages into a List<String>.
 
 
- Account Creation Module
+### Account Creation Module
 
  ## DTO Design
 
@@ -110,3 +110,30 @@ If the generated number already exists, a new one is generated until a unique nu
 - Generate server-controlled values (account number, timestamps, status) inside the service instead of accepting them from clients.
 - Use Optional.orElseThrow() to simplify null handling.
 - Spring Data JPA can derive SQL queries directly from repository method names.
+
+## Concepts Learned
+
+- Spring Boot REST APIs
+- Layered Architecture
+- DTO Pattern
+- Entity Relationships
+- JPA Repositories
+- Bean Validation
+- @Transactional
+- Exception Handling
+- Custom Exceptions
+- Global Exception Handler
+- Enum Mapping
+- BigDecimal for Monetary Calculations
+- Transaction History Design
+- Business Rule Validation
+- Git & GitHub
+- Postman API Testing
+
+
+## Challenges Faced
+
+- Implemented double-entry transaction recording for transfers.
+- Fixed Hibernate enum mapping and database check-constraint mismatch.
+- Designed custom exceptions for insufficient balance and inactive accounts.
+- Used @Transactional to ensure money transfers are unhindered.

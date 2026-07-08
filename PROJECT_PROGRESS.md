@@ -22,3 +22,42 @@ COMPLETED:
 * Postman Testing
 * Intellij HTTP Client Testing
 
+# Module 3 - Transactions ✅
+
+Completed:
+
+✔ Deposit API
+
+✔ Withdrawal API
+
+✔ Transfer API
+
+✔ DepositRequest / DepositResponse
+
+✔ WithdrawRequest / WithdrawResponse
+
+✔ TransferRequest / TransferResponse
+
+✔ DepositService
+
+✔ WithdrawService
+
+✔ TransferService
+
+✔ TransactionController
+
+✔ TransactionRepository
+
+✔ Validation
+
+✔ Custom Exceptions
+
+✔ Global Exception Handler
+
+✔ @Transactional
+
+✔ Postman Testing
+
+✔ MySQL Transaction History
+
+Status: Completed

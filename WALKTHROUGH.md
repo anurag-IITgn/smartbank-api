@@ -50,3 +50,53 @@ Invalid input → 400
 11. Convert entity to AccountResponse.
 
 12. Return HTTP 201 Created.
+
+
+## Deposit Flow
+
+1. Client sends DepositRequest.
+2. Controller validates request.
+3. Service finds account.
+4. Deposit amount added to account balance.
+5. Updated account saved.
+6. CREDIT transaction created.
+7. Transaction saved.
+8. DepositResponse returned.
+
+## Withdrawal Flow 
+
+## Withdrawal Flow
+
+1. Client sends WithdrawRequest.
+2. Validate amount.
+3. Find account.
+4. Verify account is ACTIVE.
+5. Verify sufficient balance.
+6. Deduct balance.
+7. Save account.
+8. Create DEBIT transaction.
+9. Save transaction.
+10. Return WithdrawResponse.
+
+## Transfer Flow
+
+1. Client sends TransferRequest.
+2. Validate sender.
+3. Validate receiver.
+4. Check both accounts are ACTIVE.
+5. Verify sufficient balance.
+6. Deduct sender balance.
+7. Add receiver balance.
+8. Save both accounts.
+9. Create sender DEBIT transaction.
+10. Create receiver CREDIT transaction.
+11. Save both transactions.
+12. Return TransferResponse.
+
+## Exception Handling
+Transaction module handles:
+
+- AccountNotFoundException
+- AccountInactiveException
+- InsufficientBalanceException
+- Validation Exceptions
