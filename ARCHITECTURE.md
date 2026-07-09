@@ -141,3 +141,67 @@ Account (1)
 │
 ▼
 Transaction (Many)
+
+
+# Authentication Flow
+
+Client
+
+↓
+
+POST /auth/login
+
+↓
+
+AuthController
+
+↓
+
+AuthService
+
+↓
+
+UserRepository
+
+↓
+
+MySQL Database
+
+↓
+
+Password Verification (BCrypt)
+
+↓
+
+JwtService
+
+↓
+
+JWT Token Returned
+
+
+## Components
+
+### SecurityConfig
+
+Responsible for configuring Spring Security.
+
+### PasswordEncoder
+
+Encrypts passwords using BCrypt before storing them.
+
+### AuthController
+
+Receives login requests.
+
+### AuthService
+
+Authenticates users and generates JWT tokens.
+
+### JwtService
+
+Responsible for:
+
+- Generating JWT
+- Extracting email from JWT
+- Validating JWT

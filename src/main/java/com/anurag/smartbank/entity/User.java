@@ -26,6 +26,9 @@ public class User
     @Column(nullable = false,updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private String password;
+
     public Long getId() {
         return id;
     }
@@ -64,5 +67,13 @@ public class User
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

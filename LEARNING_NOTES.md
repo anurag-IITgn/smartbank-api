@@ -137,3 +137,134 @@ If the generated number already exists, a new one is generated until a unique nu
 - Fixed Hibernate enum mapping and database check-constraint mismatch.
 - Designed custom exceptions for insufficient balance and inactive accounts.
 - Used @Transactional to ensure money transfers are unhindered.
+
+
+# Module 4 Notes
+
+## Authentication
+
+Authentication answers:
+
+Who is making this request?
+
+---
+
+## Authorization
+
+Authorization answers:
+
+What is the user allowed to do?
+
+Example:
+
+ACTIVE account
+
+↓
+
+Transfer allowed
+
+FROZEN account
+
+↓
+
+Transfer denied
+
+---
+
+## BCrypt
+
+BCrypt is a one-way hashing algorithm.
+
+Passwords are never decrypted.
+
+Verification uses:
+
+passwordEncoder.matches()
+
+---
+
+## JWT
+
+JWT = JSON Web Token
+
+Structure:
+
+Header.Payload.Signature
+
+Header
+
+Stores:
+
+- Algorithm
+- Token Type
+
+Payload
+
+Stores:
+
+- Subject (Email)
+- Issue Time
+- Expiration
+
+Signature
+
+Generated using:
+
+Header
+
++
+
+Payload
+
++
+
+Secret Key
+
+---
+
+## Secret Key
+
+Secret Key belongs to the application.
+
+It is NOT the user's password.
+
+Used only to:
+
+- Generate JWT signature
+- Verify JWT signature
+
+---
+
+## JwtService
+
+Responsibilities:
+
+- generateToken()
+- extractEmail()
+- isTokenValid()
+
+---
+
+## Login Flow
+
+Client
+
+↓
+
+Email + Password
+
+↓
+
+Password Verification
+
+↓
+
+JWT Generation
+
+↓
+
+JWT Returned
+
+↓
+
+Future Requests use JWT.

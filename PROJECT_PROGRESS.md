@@ -61,3 +61,35 @@ Completed:
 ✔ MySQL Transaction History
 
 Status: Completed
+
+
+# Module 4 – Authentication & Security ✅
+
+## Completed
+
+- Added Spring Security dependency
+- Configured SecurityConfig
+- Added BCrypt PasswordEncoder bean
+- Added password field to User entity
+- Updated CreateUserRequest to accept password
+- Encrypted user passwords before saving to database
+- Created LoginRequest DTO
+- Created LoginResponse DTO
+- Implemented AuthController
+- Implemented AuthService
+- Implemented login endpoint
+- Verified passwords using BCrypt
+- Added JWT dependency
+- Implemented JwtService
+- Generated JWT after successful login
+- Implemented JWT email extraction
+- Implemented JWT validation
+
+## Tested
+
+- User registration stores encrypted passwords
+- Successful login returns JWT token
+- Invalid password throws InvalidCredentialsException
+- Unknown email throws UserNotFoundException
+- Validation errors handled correctly
+

@@ -100,3 +100,71 @@ Transaction module handles:
 - AccountInactiveException
 - InsufficientBalanceException
 - Validation Exceptions
+
+# Module 4 Walkthrough
+
+## User Registration
+
+1. Client submits registration request.
+2. Password is encrypted using BCrypt.
+3. User is saved in database.
+4. Encrypted password is stored instead of plain text.
+
+---
+
+## User Login
+
+1. Client submits email and password.
+2. User is searched by email.
+3. BCrypt verifies password.
+4. JwtService generates JWT.
+5. JWT returned to client.
+
+---
+
+## JWT Structure
+
+JWT consists of three parts:
+
+Header
+Payload
+Signature
+
+Header stores token metadata.
+
+Payload stores:
+
+- Email
+- Issue Time
+- Expiration Time
+
+Signature is generated using:
+
+Header
+
++
+
+Payload
+
++
+
+Secret Key
+
+The final JWT is returned to the client.
+
+---
+
+## Validation
+
+JwtService validates:
+
+- Signature
+- Expiration
+
+If valid:
+
+Request is authenticated.
+
+Otherwise:
+
+401 Unauthorized.
