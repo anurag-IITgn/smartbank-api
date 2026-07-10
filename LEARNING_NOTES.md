@@ -268,3 +268,279 @@ JWT Returned
 ↓
 
 Future Requests use JWT.
+
+
+# Module 5 – Docker & Docker Compose Notes
+
+## Docker Fundamentals
+
+### Image vs Container
+
+A Docker Image is a blueprint.
+
+It is immutable and contains everything required to run an application.
+
+A Docker Container is a running instance of an image.
+
+One image can create multiple containers.
+
+---
+
+### Dockerfile
+
+Dockerfile contains instructions for building an image.
+
+Typical build process:
+
+FROM
+
+↓
+
+WORKDIR
+
+↓
+
+COPY
+
+↓
+
+RUN
+
+↓
+
+ENTRYPOINT
+
+Each instruction creates a Docker Layer.
+
+Docker caches layers to speed up future builds.
+
+---
+
+### Build vs Run
+
+These are two completely different phases.
+
+Image Build
+
+- Copies source code.
+- Downloads dependencies.
+- Executes Maven.
+- Creates executable JAR.
+- Produces Docker Image.
+
+Container Run
+
+- Executes ENTRYPOINT.
+- Starts JVM.
+- Launches Spring Boot.
+- Connects to MySQL.
+- Starts Tomcat.
+
+One of the biggest lessons from this module was understanding that **ENTRYPOINT does not execute while building the image. It executes only when a container starts.**
+
+---
+
+### ENTRYPOINT
+
+ENTRYPOINT defines the main process of the container.
+
+Example:
+
+```dockerfile
+ENTRYPOINT ["java","-jar","smartbank.jar"]
+```
+
+Whenever a container starts, Docker automatically executes this command.
+
+---
+
+### Why Maven runs during Image Build
+
+Spring Boot cannot run until the executable JAR exists.
+
+Therefore Docker first executes:
+
+mvn clean package -DskipTests
+
+to generate
+
+smartbank.jar
+
+Only after the image is built can the container execute
+
+java -jar smartbank.jar
+
+This clearly separates:
+
+Build Phase
+
+from
+
+Runtime Phase.
+
+---
+
+## Docker Networking
+
+Containers communicate through Docker Networks.
+
+Inside Docker,
+
+localhost
+
+refers to the container itself.
+
+Containers communicate using service names.
+
+Instead of:
+
+jdbc:mysql://localhost:3306/smartbank_db
+
+Docker uses:
+
+jdbc:mysql://mysql:3306/smartbank_db
+
+where
+
+mysql
+
+is the service name defined inside docker-compose.yml.
+
+---
+
+## Docker Volumes
+
+Containers are temporary.
+
+Volumes provide persistent storage.
+
+The MySQL database files are stored inside:
+
+mysql_data
+
+instead of inside the container.
+
+Deleting a container does not delete the volume.
+
+However,
+
+docker compose down -v
+
+removes both containers and volumes, creating a completely fresh database during the next startup.
+
+This explained why user IDs restarted from 1 after recreating the volume.
+
+---
+
+## Docker Compose
+
+Docker Compose manages multiple containers.
+
+Instead of manually starting:
+
+- MySQL
+- Spring Boot
+
+Docker Compose starts everything with a single command.
+
+docker compose up
+
+creates:
+
+- Network
+- Containers
+- Volume
+
+and connects everything automatically.
+
+---
+
+## Health Checks
+
+Initially I assumed:
+
+depends_on
+
+would wait until MySQL became ready.
+
+This assumption was incorrect.
+
+depends_on
+
+only controls startup order.
+
+It does not guarantee service readiness.
+
+Health checks solve this problem by repeatedly executing:
+
+mysqladmin ping
+
+Only after MySQL becomes Healthy does Docker start the SmartBank container.
+
+---
+
+## Debugging Lessons Learned
+
+### Port Conflict
+
+Windows MySQL was already using port 3306.
+
+Docker could not bind the same port.
+
+Stopping the Windows MySQL service solved the issue.
+
+---
+
+### Container Networking
+
+Containers do not communicate using localhost.
+
+They communicate using Docker service names.
+
+---
+
+### Database Readiness
+
+The Spring Boot container initially failed because MySQL was still starting.
+
+The solution was adding Docker Health Checks.
+
+---
+
+### Docker Images
+
+Downloaded images remain locally.
+
+Future builds reuse cached images unless updates are required.
+
+---
+
+## Best Practices Learned
+
+- Separate image creation from application startup.
+- Keep containers stateless.
+- Store databases in Docker Volumes.
+- Use Docker Networks instead of localhost.
+- Use Docker Compose for multi-container applications.
+- Keep Dockerfiles simple.
+- Ignore unnecessary files using .dockerignore.
+- Use Health Checks for dependent services.
+- Build once, run many times.
+
+---
+
+## Overall Concepts Learned
+
+- Docker Images
+- Docker Containers
+- Docker Layers
+- Dockerfile
+- Docker Compose
+- Docker Networks
+- Docker Volumes
+- ENTRYPOINT
+- Build vs Runtime
+- Health Checks
+- Container Lifecycle
+- Port Mapping
+- Multi-Container Applications

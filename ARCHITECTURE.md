@@ -205,3 +205,29 @@ Responsible for:
 - Generating JWT
 - Extracting email from JWT
 - Validating JWT
+
+
+# Module 5 – Docker Architecture
+
+## Deployment Architecture
+
+                 Developer
+                      │
+                      ▼
+          docker compose up --build
+                      │
+                      ▼
+              Docker Compose
+                      │
+        ┌─────────────┴─────────────┐
+        ▼                           ▼
+    SmartBank Container         MySQL Container
+    (Spring Boot Application)    (MySQL Server)
+        │                           │
+        └─────────────┬─────────────┘
+                      ▼
+                Docker Network
+                      │
+                       ▼
+                Docker Volume
+                 (mysql_data)

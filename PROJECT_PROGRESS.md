@@ -1,95 +1,253 @@
-project repositories completed those are 
-user
-account
-transactions
-each repository is created to converse with their respective tables in the MySql database smartbank_db
-each repository implements jpa repository and works in dynamic method calling. 
-AccountRepo and TransactionRepo utilizes the object details respectively because objects have been declared within theier entity
+# SmartBank Backend Project Progress
 
+## Project Overview
 
-COMPLETED:
-* Spring Boot Project setup
-* MySQL config
-* User Entity
-* User Repo
-* User DTOs
-* User Mapper
-* User Service
-* User Controller
-* User Regis API
-* Bean Validation
-* Global Exception Handling
-* Postman Testing
-* Intellij HTTP Client Testing
+SmartBank is a production-style banking backend built using Java, Spring Boot, Spring Data JPA, Hibernate and MySQL.
 
-# Module 3 - Transactions ✅
+The project is being developed module-by-module while following backend engineering best practices including layered architecture, DTOs, validation, exception handling, authentication, Docker, testing and deployment.
 
-Completed:
+---
 
-✔ Deposit API
+# Module 1 – User Management ✅
 
-✔ Withdrawal API
+## Completed
 
-✔ Transfer API
-
-✔ DepositRequest / DepositResponse
-
-✔ WithdrawRequest / WithdrawResponse
-
-✔ TransferRequest / TransferResponse
-
-✔ DepositService
-
-✔ WithdrawService
-
-✔ TransferService
-
-✔ TransactionController
-
-✔ TransactionRepository
-
-✔ Validation
-
-✔ Custom Exceptions
-
-✔ Global Exception Handler
-
-✔ @Transactional
-
-✔ Postman Testing
-
-✔ MySQL Transaction History
+- Spring Boot project setup
+- Maven project configuration
+- MySQL database configuration
+- User Entity
+- User Repository
+- User DTOs
+- User Mapper
+- User Service
+- User Controller
+- User Registration API
+- Bean Validation
+- Global Exception Handling
+- Custom Exceptions
+- REST API testing using IntelliJ HTTP Client
+- REST API testing using Postman
 
 Status: Completed
 
+---
+
+# Module 2 – Account & Repository Layer ✅
+
+## Completed
+
+### Entities
+
+- User
+- Account
+- Transaction
+
+### Repositories
+
+- UserRepository
+- AccountRepository
+- TransactionRepository
+
+Each repository extends JpaRepository and uses Spring Data JPA derived query methods for database operations.
+
+AccountRepository and TransactionRepository make use of entity relationships defined through JPA mappings.
+
+Status: Completed
+
+---
+
+# Module 3 – Transactions ✅
+
+## Completed
+
+### APIs
+
+- Deposit API
+- Withdraw API
+- Transfer API
+
+### DTOs
+
+- DepositRequest
+- DepositResponse
+- WithdrawRequest
+- WithdrawResponse
+- TransferRequest
+- TransferResponse
+
+### Services
+
+- DepositService
+- WithdrawService
+- TransferService
+
+### Controller
+
+- TransactionController
+
+### Repository
+
+- TransactionRepository
+
+### Additional Features
+
+- Bean Validation
+- Custom Exceptions
+- Global Exception Handling
+- @Transactional support
+- Transaction history stored in MySQL
+- Postman testing completed
+
+Status: Completed
+
+---
 
 # Module 4 – Authentication & Security ✅
 
 ## Completed
 
-- Added Spring Security dependency
-- Configured SecurityConfig
-- Added BCrypt PasswordEncoder bean
-- Added password field to User entity
-- Updated CreateUserRequest to accept password
-- Encrypted user passwords before saving to database
-- Created LoginRequest DTO
-- Created LoginResponse DTO
-- Implemented AuthController
-- Implemented AuthService
-- Implemented login endpoint
-- Verified passwords using BCrypt
-- Added JWT dependency
-- Implemented JwtService
-- Generated JWT after successful login
-- Implemented JWT email extraction
-- Implemented JWT validation
+### Spring Security
 
-## Tested
+- Added Spring Security
+- Security configuration
+- BCrypt PasswordEncoder
 
-- User registration stores encrypted passwords
-- Successful login returns JWT token
-- Invalid password throws InvalidCredentialsException
-- Unknown email throws UserNotFoundException
-- Validation errors handled correctly
+### Authentication
 
+- Password encryption
+- Login endpoint
+- Password verification
+- Invalid credential handling
+
+### JWT
+
+- JWT dependency
+- JwtService
+- JWT generation
+- JWT validation
+- JWT email extraction
+
+### DTOs
+
+- LoginRequest
+- LoginResponse
+
+### Testing
+
+- User registration
+- Password encryption verification
+- Login success
+- Login failure
+- Validation testing
+
+Status: Completed
+
+---
+
+# Module 5 – Docker & Docker Compose ✅
+
+## Completed
+
+### Docker
+
+- Docker Desktop installation
+- Dockerfile creation
+- Multi-stage Docker image build
+- .dockerignore configuration
+- Spring Boot containerization
+
+### Docker Compose
+
+- docker-compose.yml created
+- MySQL container configured
+- SmartBank container configured
+- Docker networking
+- Docker volumes
+- Environment variable configuration
+- Health checks
+- Service dependency configuration
+
+### Database
+
+- MySQL container
+- Persistent Docker volume
+- Automatic database creation
+- Spring Boot ↔ MySQL communication
+
+### Debugging & Troubleshooting
+
+Resolved:
+
+- Docker installation issues
+- Port 3306 conflicts with local MySQL
+- Docker Hub image download timeout
+- Container networking issues
+- MySQL initialization timing issue
+- Health check configuration
+- Spring Boot database connection failures
+- Docker Compose startup sequencing
+
+### Validation
+
+- Successfully built Docker image
+- Successfully started MySQL container
+- Successfully started SmartBank container
+- Successfully connected Spring Boot to MySQL
+- Successfully created user through Postman (HTTP 201)
+
+Status: Completed
+
+---
+
+# Current Project Status
+
+✅ Spring Boot Backend
+
+✅ MySQL
+
+✅ Spring Data JPA
+
+✅ Hibernate
+
+✅ Validation
+
+✅ Exception Handling
+
+✅ Authentication
+
+✅ JWT
+
+✅ Docker
+
+✅ Docker Compose
+
+Current Version:
+SmartBank Backend v1.0
+
+---
+
+# Next Module
+
+Module 6 – Testing
+
+- JUnit 5
+- Mockito
+- MockMvc
+- Integration Testing
+
+## Skills Demonstrated
+
+- Java
+- Spring Boot
+- Spring Data JPA
+- Hibernate
+- MySQL
+- REST APIs
+- DTO Mapping
+- Bean Validation
+- Exception Handling
+- Spring Security
+- JWT Authentication
+- Docker
+- Docker Compose
+- Git 
