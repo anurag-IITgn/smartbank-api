@@ -231,3 +231,63 @@ Responsible for:
                        ▼
                 Docker Volume
                  (mysql_data)
+
+
+
+# Testing Architecture
+
+## Testing Stack
+
+JUnit 5
+
+↓
+
+Mockito
+
+↓
+
+Service Layer
+
+↓
+
+Mocked Dependencies
+
+Repositories, Mappers and PasswordEncoder are mocked during unit testing.
+
+No database connection is required.
+
+No Spring Boot application startup is required.
+
+---
+
+## Unit Test Flow
+
+Arrange
+
+↓
+
+Mock Behaviour
+
+↓
+
+Execute Service Method
+
+↓
+
+Assertions
+
+↓
+
+Mockito Verification
+
+---
+
+## Testing Principles
+
+Business logic is tested independently from infrastructure.
+
+External dependencies are replaced by mocks.
+
+Interactions are verified using Mockito.
+
+Internal object state is verified using ArgumentCaptor.

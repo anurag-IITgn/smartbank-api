@@ -250,4 +250,31 @@ Module 6 – Testing
 - JWT Authentication
 - Docker
 - Docker Compose
-- Git 
+- Git
+
+# Module 6 – Unit Testing (In Progress) 🚧
+
+## Completed
+
+- Added JUnit 5 testing support
+- Added Mockito support
+- Learned SpringBootTest and context loading
+- Created UserServiceTest
+- Implemented successful user registration test
+- Implemented duplicate email test
+- Implemented duplicate phone test
+- Implemented password encryption verification using ArgumentCaptor
+- Learned Arrange → Act → Assert → Verify testing pattern
+- Created AccountServiceTest
+- Implemented successful account creation test
+- Implemented user not found test
+- Implemented account default value verification using ArgumentCaptor
+
+## Remaining
+
+- Account number generation uniqueness test
+- DepositService tests
+- WithdrawService tests
+- TransferService tests
+
+Status: In Progress

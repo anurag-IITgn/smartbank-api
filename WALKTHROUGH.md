@@ -325,3 +325,57 @@ Benefits:
 - Docker Compose manages multiple containers.
 - Health checks prevent dependent services from starting too early.
 - Docker Networks replace localhost communication between containers.
+
+
+
+# Module 6 Walkthrough
+
+## UserService Testing
+
+1. Create request object.
+2. Mock repository behaviour.
+3. Mock mapper behaviour.
+4. Mock password encoder.
+5. Execute registerUser().
+6. Verify returned response.
+7. Verify repository interactions.
+8. Verify encrypted password before saving.
+
+---
+
+## AccountService Testing
+
+### Successful Account Creation
+
+1. Mock existing user.
+2. Mock account mapper.
+3. Generate account number.
+4. Initialise:
+   - Balance = 0
+   - Status = ACTIVE
+   - CreatedAt
+   - User
+5. Save account.
+6. Return AccountResponse.
+
+---
+
+### User Not Found
+
+1. Repository returns Optional.empty().
+2. Service throws UserNotFoundException.
+3. Repository save() is never called.
+
+---
+
+### Account Initialisation Verification
+
+ArgumentCaptor captures Account before persistence.
+
+Verified:
+
+- Balance initialized to BigDecimal.ZERO
+- Status initialized to ACTIVE
+- User associated correctly
+- Account number generated
+- CreatedAt populated

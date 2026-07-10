@@ -544,3 +544,124 @@ Future builds reuse cached images unless updates are required.
 - Container Lifecycle
 - Port Mapping
 - Multi-Container Applications
+
+# Module 6 Notes
+
+## Unit Testing
+
+Unit testing verifies one class in isolation.
+
+Dependencies such as repositories, mappers and encoders are replaced with mock objects instead of real implementations.
+
+This allows business logic to be tested without starting Spring Boot, connecting to MySQL or using Docker.
+
+---
+
+## JUnit
+
+@Test marks a method as a test.
+
+Assertions verify the expected outcome.
+
+Common assertions learned:
+
+- assertEquals()
+- assertNotNull()
+- assertThrows()
+
+---
+
+## Mockito
+
+Mockito creates fake implementations of dependencies.
+
+### @Mock
+
+Creates a fake object.
+
+Example:
+
+- UserRepository
+- AccountRepository
+- UserMapper
+- PasswordEncoder
+
+### @InjectMocks
+
+Creates the service under test and injects all mocked dependencies automatically.
+
+---
+
+## when(...).thenReturn(...)
+
+Used to define mock behaviour.
+
+Example:
+
+when(userRepository.existsByEmail(email))
+.thenReturn(true);
+
+Meaning:
+
+When this repository method is called, return the specified value instead of accessing the real database.
+
+---
+
+## verify(...)
+
+verify() confirms that interactions with mocked dependencies actually occurred.
+
+Examples:
+
+- verify(repository).save(entity)
+- verify(repository, never()).save(...)
+- verify(repository, times(2)).existsByAccountNumber(...)
+
+verify() checks behaviour rather than returned values.
+
+---
+
+## ArgumentCaptor
+
+ArgumentCaptor captures the object passed into a mocked dependency.
+
+Used to verify internal business rules before persistence.
+
+Examples:
+
+- Password stored in encrypted form.
+- Account balance initialized to zero.
+- Account status initialized to ACTIVE.
+- User attached before saving.
+
+---
+
+## Arrange → Act → Assert → Verify
+
+Arrange
+
+Prepare objects and mock behaviour.
+
+Act
+
+Call the method being tested.
+
+Assert
+
+Verify returned values or expected exceptions.
+
+Verify
+
+Confirm interactions with dependencies occurred correctly.
+
+---
+
+## Testing Philosophy
+
+Unit tests should focus on business rules rather than implementation details.
+
+Assertions verify the final outcome.
+
+Mockito verify() checks interactions.
+
+ArgumentCaptor verifies object state before persistence.
