@@ -169,13 +169,13 @@ or launch the application from IntelliJ IDEA.
 ## SWAGGER HOMEPAGE
 ![SwaggerUI.PNG](images/SwaggerUI.PNG)
 ## SWAGGER FEATURE EXECUTION
-![AccountLoginResponse.PNG](images/AccountLoginResponse.PNG)![OpenAccount.PNG](../../OpenAccount.PNG)
+![OpenAccount.PNG](images/OpenAccount.PNG)
 ## DOCKER SMARTBANK CONTAINER
-![DockerSmartBankContainer.PNG](../../DockerSmartBankContainer.PNG)
+![DockerSmartBankContainer.PNG](images/DockerSmartBankContainer.PNG)
 ## PROJECT STRUCTURE
-![ProjectStructure.PNG](../../ProjectStructure.PNG)
+![ProjectStructure.PNG](images/ProjectStructure.PNG)
 ## MYSQL TABLES
-![TablesMySql.PNG](../../TablesMySql.PNG)
+![TablesMySql.PNG](images/TablesMySql.PNG)
 ![UsersLocalDatabase.PNG](images/UsersLocalDatabase.PNG)
 
 ## Future Roadmap
