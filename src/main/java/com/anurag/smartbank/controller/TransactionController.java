@@ -9,6 +9,8 @@ import com.anurag.smartbank.dto.response.WithdrawResponse;
 import com.anurag.smartbank.service.DepositService;
 import com.anurag.smartbank.service.TransferService;
 import com.anurag.smartbank.service.WithdrawService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Transaction Management", description = "APIs for deposits, withdrawals and fund transfers")
 @RequestMapping("/transactions")
 public class TransactionController
 {
@@ -31,6 +34,7 @@ public class TransactionController
         this.withdrawService = withdrawService;
         this.transferService = transferService;
     }
+    @Operation(summary = "Deposit money", description = "Deposits money into an active account.")
     @PostMapping("/deposit")
     public ResponseEntity<DepositResponse> performDeposit(@Valid @RequestBody DepositRequest request)
     {
@@ -38,6 +42,7 @@ public class TransactionController
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
+    @Operation(summary = "Withdraw money", description = "Withdraws money from an active account after checking sufficient balance.")
     @PostMapping("/withdraw")
     public ResponseEntity<WithdrawResponse> performWithdrawal(@Valid @RequestBody WithdrawRequest request)
     {
@@ -45,6 +50,7 @@ public class TransactionController
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
+    @Operation(summary = "Transfer money", description = "Transfers money between two active accounts.")
     @PostMapping("/transfer")
     public ResponseEntity<TransferResponse> performTransfer(@Valid @RequestBody TransferRequest request)
     {
