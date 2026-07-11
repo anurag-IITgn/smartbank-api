@@ -151,7 +151,7 @@ without manually installing or configuring the database.
 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone <https://github.com/anurag-IITgn/smartbank-api>
 ```
 
 2. Configure MySQL
@@ -167,16 +167,16 @@ mvn spring-boot:run
 or launch the application from IntelliJ IDEA.
 
 ## SWAGGER HOMEPAGE
-![SwaggerUI.PNG](../../SwaggerUI.PNG)
+![SwaggerUI.PNG](images/SwaggerUI.PNG)
 ## SWAGGER FEATURE EXECUTION
-![OpenAccount.PNG](../../OpenAccount.PNG)
+![AccountLoginResponse.PNG](images/AccountLoginResponse.PNG)![OpenAccount.PNG](../../OpenAccount.PNG)
 ## DOCKER SMARTBANK CONTAINER
 ![DockerSmartBankContainer.PNG](../../DockerSmartBankContainer.PNG)
 ## PROJECT STRUCTURE
 ![ProjectStructure.PNG](../../ProjectStructure.PNG)
 ## MYSQL TABLES
 ![TablesMySql.PNG](../../TablesMySql.PNG)
-![UsersLocalDatabase.PNG](../../UsersLocalDatabase.PNG)
+![UsersLocalDatabase.PNG](images/UsersLocalDatabase.PNG)
 
 ## Future Roadmap
 
